@@ -30,15 +30,14 @@ export const store = {
 };
 
 export function updateStorage() {
-  sessionStorage.setItem("store", JSON.stringify(store));
+  sessionStorage.setItem('store', JSON.stringify(store));
 }
 
 export function initStore() {
-  const storage = sessionStorage.getItem("store");
+  const storage = sessionStorage.getItem('store');
   if (!storage) updateStorage();
 
-  const { dateList, detailList, todayId, currentFunds, isFirstEdit } =
-    JSON.parse(storage);
+  const { dateList, detailList, todayId, currentFunds, isFirstEdit } = JSON.parse(storage);
 
   store.currentFunds = currentFunds;
   store.isFirstEdit = isFirstEdit;

@@ -1,14 +1,14 @@
-import { validatePrice, validateRequired, toHidden, toShow } from "../util";
-import { store, addNewHistory } from "../store";
-import { renderHistoryList } from "./history-list";
-import { renderCurrentAsset } from "./current-asset";
+import { validatePrice, validateRequired, toHidden, toShow } from '../util.js';
+import { store, addNewHistory } from '../store.js';
+import { renderHistoryList } from './history-list.js';
+import { renderCurrentAsset } from './current-asset.js';
 
-const $addItemButton = document.querySelector(".add-item-button");
-const $addItemDetail = document.querySelector(".add-item-detail");
-const $addItemDetailButton = document.querySelector(".item-submit-button");
-const $addItemCategory = document.querySelector("#item-category");
-const $addItemPrice = document.querySelector("#item-price");
-const $addItemDescription = document.querySelector("#item-description");
+const $addItemButton = document.querySelector('.add-item-button');
+const $addItemDetail = document.querySelector('.add-item-detail');
+const $addItemDetailButton = document.querySelector('.item-submit-button');
+const $addItemCategory = document.querySelector('#item-category');
+const $addItemPrice = document.querySelector('#item-price');
+const $addItemDescription = document.querySelector('#item-description');
 
 export function initAddItem() {
   renderAddItemButton();
@@ -21,12 +21,12 @@ function renderAddItemButton() {
 }
 
 function addItemEditEventListener() {
-  $addItemButton.addEventListener("click", function (event) {
+  $addItemButton.addEventListener('click', function (event) {
     toHidden(event.target);
     toShow($addItemDetail);
   });
 
-  $addItemDetailButton.addEventListener("click", function (event) {
+  $addItemDetailButton.addEventListener('click', function (event) {
     if (
       !validateRequired({
         category: $addItemCategory.value,
@@ -34,9 +34,8 @@ function addItemEditEventListener() {
         price: $addItemPrice.value,
       })
     )
-      return alert("필수항목이 누락되었습니다.");
-    if (!validatePrice(store.currentFunds, $addItemPrice.value))
-      return alert("현재 자산 이상의 금액을 작성하셨습니다.");
+      return alert('필수항목이 누락되었습니다.');
+    if (!validatePrice(store.currentFunds, $addItemPrice.value)) return alert('현재 자산 이상의 금액을 작성하셨습니다.');
 
     const newHistory = {
       createAt: new Date(),
@@ -48,7 +47,7 @@ function addItemEditEventListener() {
     };
     const isSuccess = addNewHistory(newHistory);
     if (!isSuccess) {
-      alert("소비내역 저장에 실패했습니다.");
+      alert('소비내역 저장에 실패했습니다.');
       return;
     }
 
@@ -66,7 +65,7 @@ function reRender() {
 }
 
 function initAddItemInput() {
-  $addItemCategory.value = "";
-  $addItemDescription.value = "";
-  $addItemPrice.value = "";
+  $addItemCategory.value = '';
+  $addItemDescription.value = '';
+  $addItemPrice.value = '';
 }

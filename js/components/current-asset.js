@@ -1,10 +1,10 @@
-import { store, updateStorage } from "../store";
-import { toHidden, toShow } from "../util";
+import { store, updateStorage } from '../store.js';
+import { toHidden, toShow } from '../util.js';
 
-const $currentAssetInput = document.querySelector(".current-asset-input");
-const $currentAssetValue = document.querySelector(".current-asset-value");
-const $currentAssetButton = document.querySelector(".current-asset-button");
-const $addItemButton = document.querySelector(".add-item-button");
+const $currentAssetInput = document.querySelector('.current-asset-input');
+const $currentAssetValue = document.querySelector('.current-asset-value');
+const $currentAssetButton = document.querySelector('.current-asset-button');
+const $addItemButton = document.querySelector('.add-item-button');
 
 export function initCurrentAsset() {
   renderCurrentAsset();
@@ -12,7 +12,7 @@ export function initCurrentAsset() {
 }
 
 function addCurrentAssetEventListener() {
-  $currentAssetValue.addEventListener("click", function (event) {
+  $currentAssetValue.addEventListener('click', function (event) {
     if (!store.isFirstEdit) return;
     toHidden(event.target);
     toShow($currentAssetInput);
@@ -21,7 +21,7 @@ function addCurrentAssetEventListener() {
     $currentAssetInput.focus();
   });
 
-  $currentAssetButton.addEventListener("click", function (event) {
+  $currentAssetButton.addEventListener('click', function (event) {
     toHidden(event.target);
     toHidden($currentAssetInput);
     toShow($currentAssetValue);
